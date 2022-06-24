@@ -17,6 +17,6 @@ Tree;
 void InsertT(Tree * tree, int key);
 void InorderT(Tree * tree);
 void Delete(Tree * tree, int key);
-void PictureT(Tree* tree);
+__attribute__((weak)) void PictureT(Tree* tree);
 
 #endif /* BTREE_H */
