@@ -3,7 +3,7 @@ package inJava.linkedList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-class List implements Iterable<Integer>, Iterator<Integer> {
+public class List implements Iterable<Integer>, Iterator<Integer> {
     private Node head = null;
     private Node tail = null;
     int length = 0;
