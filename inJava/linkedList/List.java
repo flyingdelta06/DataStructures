@@ -1,10 +1,14 @@
 package inJava.linkedList;
 
-class List {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+class List implements Iterable<Integer>, Iterator<Integer> {
     private Node head = null;
     private Node tail = null;
     int length = 0;
-    List(int[] inpArr){
+    List(){}
+    List(int... inpArr){
         this.head = new Node(inpArr[0], null, null);
         Node currNode = this.head;
         for (int i = 1; i < inpArr.length; i++){
@@ -101,9 +105,9 @@ class List {
         this.length += 1;
         return this.length;
     }
-    int extend(int[] a){
-        for (int i = 0; i < a.length; i++){
-            this.addLast(a[i]);
+    int extend(int... elements){
+        for (int i = 0; i < elements.length; i++){
+            this.addLast(elements[i]);
         }
         return this.length;
     }
@@ -213,6 +217,32 @@ class List {
         }
         return Arr;
     }
+    // Implementing Iterable interface
+    // Iterator interface
+    private int count = 0;
+    private Node iteratorPos = null;
+    public boolean hasNext(){
+        if (count < this.length) return true;
+        count = 0;
+        this.iteratorPos = null;
+        return false;
+    }
+    public Integer next(){
+        if (count == this.length) throw new NoSuchElementException();
+        count++;
+        if (this.iteratorPos == null) this.iteratorPos = this.head;
+        else this.iteratorPos = this.iteratorPos.next;
+        return this.iteratorPos.data;
+    }
+    public void remove(){
+        throw new UnsupportedOperationException();
+    }
+
+    // Iterable implementation
+    public Iterator<Integer> iterator(){
+        return this;
+    }
+
 }
 
 final class Node{
