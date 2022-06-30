@@ -1,5 +1,4 @@
 package inJava.linkedList;
-import inJava.linkedList.List;
 
 public class example {
     // All Methods:
