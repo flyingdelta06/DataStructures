@@ -6,37 +6,41 @@ import java.util.NoSuchElementException;
 public class List implements Iterable<Integer>, Iterator<Integer> {
     private Node head = null;
     private Node tail = null;
-    int length = 0;
-    List(){}
-    List(int... inpArr){
+    private int length = 0;
+
+    public List() {
+    }
+
+    public List(int... inpArr) {
         this.head = new Node(inpArr[0], null, null);
         Node currNode = this.head;
-        for (int i = 1; i < inpArr.length; i++){
+        for (int i = 1; i < inpArr.length; i++) {
             Node newNode = new Node(inpArr[i], currNode, null);
             currNode.next = newNode;
             currNode = currNode.next;
-            if (i != inpArr.length - 1) currNode = currNode.next;
+            if (i != inpArr.length - 1)
+                currNode = currNode.next;
         }
         this.tail = currNode;
         this.length = inpArr.length;
     }
 
-    private Node getNode(int index){
+    private Node getNode(int index) {
         Node currNode = this.head;
         int i = 0;
         // Check if index < this.length / 2
-        while (i != index){
+        while (i != index) {
             currNode = currNode.next;
             i++;
         }
         return currNode;
     }
 
-    int length(){
+    public int length() {
         return this.length;
     }
 
-    int addFirst(int val){
+    public int addFirst(int val) {
         if (this.length == 0) {
             this.head = new Node(val);
             this.tail = this.head;
@@ -50,8 +54,9 @@ public class List implements Iterable<Integer>, Iterator<Integer> {
         this.length += 1;
         return this.length;
     }
-    int add(int val, int index){
-        if (index < 0 || index >= this.length){
+
+    public int add(int val, int index) {
+        if (index < 0 || index >= this.length) {
             throw new ArrayIndexOutOfBoundsException(index);
         }
         if (this.length == 0) {
@@ -67,16 +72,14 @@ public class List implements Iterable<Integer>, Iterator<Integer> {
             this.head = newNode;
             this.length += 1;
             return this.length;
-        }
-        else if (index == this.length - 1){
+        } else if (index == this.length - 1) {
             Node newNode = new Node(val);
             newNode.previous = this.tail;
             this.tail.next = newNode;
             this.tail = newNode;
             this.length += 1;
             return this.length;
-        } 
-        else {
+        } else {
             Node pvNode = getNode(index - 1);
             Node nextNode = getNode(index);
             Node newNode = new Node(val);
@@ -88,10 +91,12 @@ public class List implements Iterable<Integer>, Iterator<Integer> {
             return this.length;
         }
     }
-    int add(int val){
+
+    public int add(int val) {
         return addFirst(val);
     }
-    int addLast(int val){
+
+    public int addLast(int val) {
         if (this.length == 0) {
             this.head = new Node(val);
             this.tail = this.head;
@@ -100,18 +105,21 @@ public class List implements Iterable<Integer>, Iterator<Integer> {
         }
         Node newNode = new Node(val);
         newNode.previous = this.tail;
-        if (this.tail != null) this.tail.next = newNode;
+        if (this.tail != null)
+            this.tail.next = newNode;
         this.tail = newNode;
         this.length += 1;
         return this.length;
     }
-    int extend(int... elements){
-        for (int i = 0; i < elements.length; i++){
+
+    public int extend(int... elements) {
+        for (int i = 0; i < elements.length; i++) {
             this.addLast(elements[i]);
         }
         return this.length;
     }
-    int removeFirst(){
+
+    public int removeFirst() {
         if (this.length == 0) {
             throw new ArrayIndexOutOfBoundsException(0);
         } else if (this.length == 1) {
@@ -123,11 +131,13 @@ public class List implements Iterable<Integer>, Iterator<Integer> {
         }
         int data = this.head.data;
         this.head = this.head.next;
-        if (this.head != null) this.head.previous = null;
+        if (this.head != null)
+            this.head.previous = null;
         this.length -= 1;
         return data;
     }
-    int removeLast(){
+
+    public int removeLast() {
         if (this.length == 0) {
             throw new ArrayIndexOutOfBoundsException(0);
         } else if (this.length == 1) {
@@ -139,12 +149,14 @@ public class List implements Iterable<Integer>, Iterator<Integer> {
         }
         int data = this.tail.data;
         this.tail = this.tail.previous;
-        if (this.tail != null) this.tail.next = null;
+        if (this.tail != null)
+            this.tail.next = null;
         this.length -= 1;
         return data;
     }
-    int remove(int index){
-        if (index < 0 || index >= this.length){
+
+    public int remove(int index) {
+        if (index < 0 || index >= this.length) {
             throw new ArrayIndexOutOfBoundsException(index);
         } else if (this.length == 1) {
             int data = this.head.data;
@@ -158,14 +170,12 @@ public class List implements Iterable<Integer>, Iterator<Integer> {
             this.head.previous = null;
             this.length -= 1;
             return this.length;
-        }
-        else if (index == this.length - 1){
+        } else if (index == this.length - 1) {
             this.tail = this.tail.previous;
             this.tail.next = null;
             this.length -= 1;
             return this.length;
-        } 
-        else {
+        } else {
             Node pvNode = getNode(index - 1);
             Node nextNode = getNode(index + 1);
             pvNode.next = nextNode;
@@ -174,87 +184,102 @@ public class List implements Iterable<Integer>, Iterator<Integer> {
             return this.length;
         }
     }
-    int getFirst(){
+
+    public int getFirst() {
         if (this.length == 0) {
             throw new ArrayIndexOutOfBoundsException(0);
         }
         return this.head.data;
     }
-    int getLast(){
+
+    public int getLast() {
         if (this.length == 0) {
             throw new ArrayIndexOutOfBoundsException(0);
         }
         return this.tail.data;
     }
-    int get(int index){
-        if (index < 0 || index >= this.length){
+
+    public int get(int index) {
+        if (index < 0 || index >= this.length) {
             throw new ArrayIndexOutOfBoundsException(index);
         }
         return this.getNode(index).data;
     }
-    void display(){
+
+    public void display() {
         if (this.length == 0) {
             System.out.println("The list is empty...");
             return;
         }
         Node curNode = this.head;
         System.out.printf("[");
-        while (curNode.next != null){
+        while (curNode.next != null) {
             System.out.printf("%d, ", curNode.data);
             curNode = curNode.next;
         }
         System.out.printf("%d]\n", curNode.data);
     }
-    int[] toArray(){
+
+    public int[] toArray() {
         if (this.length == 0) {
             return new int[0];
         }
         int[] Arr = new int[this.length];
         Node currNode = this.head;
-        for (int i = 0; i < this.length; i++){
+        for (int i = 0; i < this.length; i++) {
             Arr[i] = currNode.data;
             currNode = currNode.next;
         }
         return Arr;
     }
+
     // Implementing Iterable interface
     // Iterator interface
     private int count = 0;
     private Node iteratorPos = null;
-    public boolean hasNext(){
-        if (count < this.length) return true;
+
+    public boolean hasNext() {
+        if (count < this.length)
+            return true;
         count = 0;
         this.iteratorPos = null;
         return false;
     }
-    public Integer next(){
-        if (count == this.length) throw new NoSuchElementException();
+
+    public Integer next() {
+        if (count == this.length)
+            throw new NoSuchElementException();
         count++;
-        if (this.iteratorPos == null) this.iteratorPos = this.head;
-        else this.iteratorPos = this.iteratorPos.next;
+        if (this.iteratorPos == null)
+            this.iteratorPos = this.head;
+        else
+            this.iteratorPos = this.iteratorPos.next;
         return this.iteratorPos.data;
     }
-    public void remove(){
+
+    public void remove() {
         throw new UnsupportedOperationException();
     }
 
     // Iterable implementation
-    public Iterator<Integer> iterator(){
+    public Iterator<Integer> iterator() {
         return this;
     }
 
 }
 
-final class Node{
+final class Node {
     int data = 0;
     Node next = null;
     Node previous = null;
-    Node(int val){
+
+    Node(int val) {
         this.data = val;
         this.next = null;
         this.previous = null;
     }
-    Node(int val, Node previous, Node next){
+
+    Node(int val, Node previous, Node next) {
         this.data = val;
         this.next = next;
         this.previous = previous;
