@@ -1,6 +1,6 @@
 package inJava.stack;
 
-class stackA {
+public class stackA {
     int maxLength = 100;
     private int[] data = new int[maxLength];
     private int k = 0;
