@@ -4,6 +4,11 @@ class stackA {
     int maxLength = 100;
     private int[] data = new int[maxLength];
     private int k = 0;
+    stackA(){}
+    stackA(int size){
+        this.maxLength = size;
+        this.data = new int[maxLength];
+    }
     int peek(){
         if (this.k == 0) throw new ArrayIndexOutOfBoundsException();
         return data[k - 1];
