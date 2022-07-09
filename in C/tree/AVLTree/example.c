@@ -41,29 +41,29 @@ void Picture(AVLTree* a){
 }
 
 int main(){
-    AVLTree myTree;
-    myTree.root = NULL;
-    Insert(&myTree, 6);
-    Picture(&myTree);
+    int arr[] = {1, 8, 9, 0};
+    AVLTree* myTree = Create(arr, 4);
+    Insert(myTree, 6);
+    Picture(myTree);
     printf("\n");
-    Insert(&myTree, 5);
-    Picture(&myTree);
+    Insert(myTree, 5);
+    Picture(myTree);
     printf("\n");
-    Insert(&myTree, 7);
-    Picture(&myTree);
+    Insert(myTree, 7);
+    Picture(myTree);
     printf("\n");
-    Insert(&myTree, 4);
-    Picture(&myTree);
+    Insert(myTree, 4);
+    Picture(myTree);
     printf("\n");
-    Insert(&myTree, 3);
-    Picture(&myTree);
+    Insert(myTree, 3);
+    Picture(myTree);
     printf("\n");
-    Insert(&myTree, 2);
-    Picture(&myTree);
+    Insert(myTree, 2);
+    Picture(myTree);
     printf("\n");
-    Insert(&myTree, 1);
-    Picture(&myTree);
+    Insert(myTree, 1);
+    Picture(myTree);
     printf("\n");
-    Delete(&myTree, 6);
-    Picture(&myTree);
+    Delete(myTree, 6);
+    Picture(myTree);
 }
