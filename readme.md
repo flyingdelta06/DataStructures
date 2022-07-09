@@ -59,3 +59,22 @@ gcc -o pictureTree pictureTree.c binaryTree.c ../stack/stack.c
 ./pictureTree
 
 ```
+
+## AVL Tree
+
+To import AVL Tree
+```C
+#include "AVLTree.h";
+```
+
+To compile the file
+```bash
+gcc -o <OutputFile> <fileName.c> <pathToAVLTree.c>
+```
+
+To run the example file
+```bash
+cd "./in C/tree/AVLTree"
+gcc -o example.exe example.c AVLTree.c ../../stack/stack.c
+./example
+```
