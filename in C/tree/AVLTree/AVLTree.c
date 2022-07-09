@@ -138,9 +138,13 @@ void rebalanceTree(AVLTree* tree, Node* a){
     }
 }
 
-AVLTree* Create(int* arr){
+AVLTree* Create(int* arr, int arrSize){
     AVLTree* newTree = (AVLTree*) malloc(sizeof(AVLTree));
     newTree->root = NULL;
+    for (int i = 0; i < arrSize; i++){
+        Insert(newTree, *(arr + i));
+    }
+    return newTree;
 }
 
 static void InsertT(AVLTree* tree, Node * a, int key) {

@@ -16,7 +16,7 @@ typedef struct AVLTree {
 }
 AVLTree;
 
-AVLTree* Create(int* arr);
+AVLTree* Create(int* arr, int arrSize);
 void Insert(AVLTree * tree, int key);
 void Inorder(AVLTree * tree);
 void Delete(AVLTree * tree, int key);
